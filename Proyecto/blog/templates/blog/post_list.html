@@ -6,14 +6,13 @@
         <div>
             <h1><a href="/">Django Blog</a></h1>
         </div>
-
+        {% for post in posts %}
         <div>
-            <p>published: 11.06.2022, 14:14</p>
-            <h2><a href="">Mi primer post</a></h2>
-             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. 
-                Iure repellendus doloremque atque porro quo laboriosam tempora minus, accusamus a, nulla eius aliquam quas. 
-                Dignissimos expedita error saepe veritatis doloremque quod.</p>
+            <p> publicado: {{ post.published_date }}</p>
+            <h2><a href="">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
+        {% endfor %}
         <div>
             <p>published: 11.06.2022, 14:17</p>
             <h2><a href="">My second post</a></h2>
