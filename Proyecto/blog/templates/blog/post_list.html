@@ -1,39 +1,13 @@
-{% load static %}
-<html>
-    <head>
-        <title>Creando el primer blog</title>
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
-        <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
-        <link rel="stylesheet" href="{% static 'css/blog.css' %}">
-    </head>
-    <body>
-        <div>
-            <h1 class="page-header"><a href="/">Django Blog</a></h1>
-        </div>
-        <div class="content container">
-            <div class="row">
-                <div class="col-md-8">
-                    {% for post in posts %}
-                        <div class="post">
-                            <div class="date">
-                                <p>publicado: {{ post.published_date }}</p>
-                            </div>
-                            <h2><a href="">{{ post.title }}</a></h2>
-                            <p>{{ post.text|linebreaksbr }}</p>
-                        </div>
-                    {% endfor %}
-                </div>
+{% extends 'blog/base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <div class="post">
+            <div class="date">
+                {{ post.published_date }}
             </div>
+            <h2><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h2>
+            <p>{{ post.text|linebreaksbr }}</p>
         </div>
-        
-        <div>
-            <p>published: 11.06.2022, 14:17</p>
-            <h2><a href="">My second post</a></h2>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. 
-                Sint ipsum tempore cumque temporibus numquam quis aperiam nihil asperiores, 
-                eum eligendi vero consectetur eius vitae soluta. 
-                Vitae tempora minus itaque molestiae?</p>
-        </div>
-    </body>
-</html>
+    {% endfor %}
+{% endblock %}
