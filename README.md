@@ -38,9 +38,9 @@
 <tr><th>SOLUCIÓN Y RESULTADOS</th></tr>
 </theader>
 <tbody>
-<tr><td>I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS:<br>...</td></tr>
+<tr><td>I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS:<br>-Posteriormente para mejorar el dinamismo de las paginas html, se hace uso de plantillas, que sirve para reutilizar partes del HTML de diferentes paginas web, las paginas web usadas son: <li>base.html</li><li>post_detail.html</li><li>post_edit.html</li><li>post_list.html</li>Cada una de estas paginas debe tener su URL que se modifica en <em>urls.py</em>, para poder editar las publicaciones se necesita un formulario, asi que se crea el mismo en la carpeta blog con el nombre de <em>forms.py</em>. Ya por último agregar las vistas para cada uan de las páginas, en el archivo<em>views.py</em> y lanzar el servidor</td></tr>
 <tr><td>II. SOLUCIÓN DEL CUESTIONARIO:<br><strong><em>1. ¿Cuál es un estándar de codificación para Python?</em></strong><br><p>...</p><strong><em>2. ¿Qué diferencias existen entre EasyInstall, pip, y PyPM?</em></strong><p>...</p><strong><em> 3.  ¿Qué otros tipos de archivos se deberían agregar a este archivo?</em></strong><p>...</p><strong><em>4. Utilice python manage.py shell para agregar objetos. ¿Qué archivos se modificaron al agregar más objetos?</em></strong><p>...</p></td></tr>
-<tr><td>III. CONCLUSIONES:</td></tr>
+<tr><td>III. CONCLUSIONES:<br><p>Este laboratorio nos mostró cómo poder crear un Blog de una manera más optimizada, utilizando tecnologías como Django, este Framework, basado en python permite crear paginas web, gracias a su diseño: modelo-vista-controlador, que permite ahorrar tiempo. Lo aprendido en este Lab será de mucha ayuda para posteriores trabajos que vayamos hacer con este Framework.</p></td></tr>
 </tbody>
 </table>
 
