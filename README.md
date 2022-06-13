@@ -86,14 +86,28 @@ urlpatterns = [
     └───blog
   </pre><br>
   <em> Django shell </em><br>
-  - En esta parte entramos a la consola de Django en la cual podremos crear Post, asimismo podemos usar filtros para buscar nuestros post creados.
+  - En esta parte entramos a la consola de Django en la cual podremos crear Post, asimismo podemos usar filtros para buscar nuestros post creados.<br>
+  
   <em> Datos dinámicos en plantillas </em><br>
   - Luego de realizar los post, aqui modificamos el archivo blog/views.py para publicar los post que se haya crreado
-  - Despues en el archivo blog/templates/blog/post_list.html agregamos {% for %} y {% endfor %} para mostrar el contenido de nuestros post<br>
+  - Despues en el archivo blog/templates/blog/post_list.html agregamos {% for %} y {% endfor %} para mostrar el contenido de nuestros post
+   <br><pre>
+{% for post in posts %}
+        publicado: {{ post.published_date }}
+        {{ post.title }}
+        {{ post.text|linebreaksbr }}    
+        {% endfor %}
+//De esta manera mostramos todos nuestros Post con su contenido
+   </pre>
   
 <em> Agregando CSS </em><br>
-  - Aqui en la carpeta "blog/static/css" agregamos contenido CSS para dar estilo a nuestra pagina, aqui resulta importante agregar en "blog/templates/blog/post_list.html" la linea de codigo {% load static %}.<br>
-  
+  - Aqui en la carpeta "blog/static/css" agregamos contenido CSS para dar estilo a nuestra pagina, aqui resulta importante agregar en "blog/templates/blog/post_list.html" 
+  <br><pre>
+  //la linea de codigo
+  {% load static %}
+  //Ademas agregamos lo siguiente para que reconzca nuestro archivo CSS
+    \<link rel="stylesheet" href="{% static 'css/blog.css' %}"\>
+  </pre><br>
   <em> Lanzamiento de la primera página de mi blog </em> <br><br>-Posteriormente para mejorar el dinamismo de las paginas html, se hace uso de plantillas, que sirve para reutilizar partes del HTML de diferentes paginas web, las paginas web usadas son: <li>base.html</li><li>post_detail.html</li><li>post_edit.html</li><li>post_list.html</li>Cada una de estas paginas debe tener su URL que se modifica en <em>urls.py</em>, para poder editar las publicaciones se necesita un formulario, asi que se crea el mismo en la carpeta blog con el nombre de <em>forms.py</em>. Ya por último agregar las vistas para cada uan de las páginas, en el archivo<em>views.py</em> y lanzar el servidor
   </td></tr>
 <tr><td>II. SOLUCIÓN DEL CUESTIONARIO:<br><strong><em>1. ¿Cuál es un estándar de codificación para Python?</em></strong><br><p>En el caso de Python usa una codificación de PEP 8, donde esta convención trae consigo una guía para escribir código de Python, esta basado en la guía realizado por Guido y algunas ediciones de la guía de estilo de Barry. La guia esta en constante cambio; el link de este estandar es:  https://legacy.python.org/dev/peps/pep-0008/#introduction.</p><strong><em>2. ¿Qué diferencias existen entre EasyInstall, pip, y PyPM?</em></strong><p>easy_install esta actualmente en desuso y fue reemplazado por pip, ya que brindaba mejores funciones en cuanto a las instalaciones de paquetes y la ayuda de PEP 438, que este tuvo varias mejorar con repecto a easy_install, por otro lado PyPM es un administrador d paquetes de Python, donde esta permite administrar los proyectos, que a diferencia de pip este soloque es un instalador de paquetes y los administra.</p><strong><em> 3.  ¿Qué otros tipos de archivos se deberían agregar a este archivo?</em></strong><p>A parte de lo mencionado también se pude considerar tambipen la base de datos, el cual es db.squite3, además de de los .eggs/ y los archivos pip-log.txt que sirve para los paquetes instalados y son efímeros en cuanto al desarrollo del código.</p><strong><em>4. Utilice python manage.py shell para agregar objetos. ¿Qué archivos se modificaron al agregar más objetos?</em></strong><p>...</p></td></tr>
