@@ -38,7 +38,55 @@
 <tr><th>SOLUCIÓN Y RESULTADOS</th></tr>
 </theader>
 <tbody>
-<tr><td>I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS:<br>-Posteriormente para mejorar el dinamismo de las paginas html, se hace uso de plantillas, que sirve para reutilizar partes del HTML de diferentes paginas web, las paginas web usadas son: <li>base.html</li><li>post_detail.html</li><li>post_edit.html</li><li>post_list.html</li>Cada una de estas paginas debe tener su URL que se modifica en <em>urls.py</em>, para poder editar las publicaciones se necesita un formulario, asi que se crea el mismo en la carpeta blog con el nombre de <em>forms.py</em>. Ya por último agregar las vistas para cada uan de las páginas, en el archivo<em>views.py</em> y lanzar el servidor</td></tr>
+<tr><td>I. SOLUCIÓN DE EJERCICIOS/PROBLEMAS:Para la creación de nuestra página web se tuvo que recurrir a los siguientes pasos:<br> - Primeramentes se tuvo que crear el proyecto con ayuda del Django, para que nos ofrezca los recursos para iniciar con nuestra página, además de configurarla a nuestro idioma, la zona donde noes encontramos y también creamos la base de datos<br><img src='imagenes/inicioDjango.png' alt='inicio'><br> 2. Luego se crea un modelo en el cuál se pueda poner los objetos que tendrá nuestro post, en el cual se vera el titulo, el autor, el dia creado y publico, aparte del texto que va contener<br>
+  <em>Código del modelo del blog</em>
+  <pre>
+  from django.conf import settings
+from django.db import models
+from django.utils import timezone
+
+class Post(models.Model):
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(
+            default=timezone.now)
+    published_date = models.DateTimeField(
+            blank=True, null=True)
+    def publish(self):
+        self.published_date = timezone.now()
+        self.save()
+    def __str__(self):
+        return self.title
+  </pre>
+  3. Luego tuvimos crear al super-usuario, para que pueda manipular y crear los post en la base de datos.<br>
+  <img src= 'imagen/baseDatos' src='GUI de la pagina donde contiene los post'><br>
+  4. Una vez tenida la base datos y su modelo, se inicia con la modifcación con el diseño de la página, la cual la vamos a hacer modificaciones en el codigo de Django, manipulando los accesos para redirrecionarlos a una función que va ejecutar la página web que deseamos.<br><br>
+  <em>Código de rutas de url</em>
+  <pre>
+  from django.contrib import admin
+from django.urls import path, include
+urlpatterns = [
+    path('admin/', admin.site.urls),
+    path('', include('blog.urls')),
+]
+  </pre>
+  
+  <em>Código que renderizará la página</em><br>
+  <pre>
+  def post_list(request):
+    return render(request, 'blog/post_list.html', {})
+  </pre>
+  
+  5. Se crea una carpeta la cuál se ubicara los archivos html que se van renderizar las páginas dependiendo de la ruta<br>
+  <em>Ruta de ubicación </em><br>
+  <pre>
+  blog
+└───templates
+    └───blog
+  </pre><br>
+  <em> Lanzamiento de la primera página de mi blog </em> <br><br>-Posteriormente para mejorar el dinamismo de las paginas html, se hace uso de plantillas, que sirve para reutilizar partes del HTML de diferentes paginas web, las paginas web usadas son: <li>base.html</li><li>post_detail.html</li><li>post_edit.html</li><li>post_list.html</li>Cada una de estas paginas debe tener su URL que se modifica en <em>urls.py</em>, para poder editar las publicaciones se necesita un formulario, asi que se crea el mismo en la carpeta blog con el nombre de <em>forms.py</em>. Ya por último agregar las vistas para cada uan de las páginas, en el archivo<em>views.py</em> y lanzar el servidor
+  </td></tr>
 <tr><td>II. SOLUCIÓN DEL CUESTIONARIO:<br><strong><em>1. ¿Cuál es un estándar de codificación para Python?</em></strong><br><p>En el caso de Python usa una codificación de PEP 8, donde esta convención trae consigo una guía para escribir código de Python, esta basado en la guía realizado por Guido y algunas ediciones de la guía de estilo de Barry. La guia esta en constante cambio; el link de este estandar es:  https://legacy.python.org/dev/peps/pep-0008/#introduction.</p><strong><em>2. ¿Qué diferencias existen entre EasyInstall, pip, y PyPM?</em></strong><p>easy_install esta actualmente en desuso y fue reemplazado por pip, ya que brindaba mejores funciones en cuanto a las instalaciones de paquetes y la ayuda de PEP 438, que este tuvo varias mejorar con repecto a easy_install, por otro lado PyPM es un administrador d paquetes de Python, donde esta permite administrar los proyectos, que a diferencia de pip este soloque es un instalador de paquetes y los administra.</p><strong><em> 3.  ¿Qué otros tipos de archivos se deberían agregar a este archivo?</em></strong><p>A parte de lo mencionado también se pude considerar tambipen la base de datos, el cual es db.squite3, además de de los .eggs/ y los archivos pip-log.txt que sirve para los paquetes instalados y son efímeros en cuanto al desarrollo del código.</p><strong><em>4. Utilice python manage.py shell para agregar objetos. ¿Qué archivos se modificaron al agregar más objetos?</em></strong><p>...</p></td></tr>
   <tr><td>III. CONCLUSIONES:<br><p>Este laboratorio nos mostró cómo poder crear un Blog de una manera más optimizada, utilizando tecnologías como Django, este Framework, basado en python permite crear paginas web, gracias a su diseño: modelo-vista-controlador, que permite ahorrar tiempo. Lo aprendido en este Lab será de mucha ayuda para posteriores trabajos que vayamos hacer con este Framework.</p></td><</tr>
 </tbody>
